@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Harmony</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --surface:#fff8f8; --background:#FFFDF6; --on-surface:#1e1b1c; --on-surface-variant:#4e4448;
+  --primary:#765566; --on-primary:#ffffff; --primary-container:#ffd3e8; --on-primary-container:#7a586a;
+  --secondary:#65587a; --on-secondary:#ffffff; --secondary-container:#e7d6fe; --on-secondary-container:#685b7d;
+  --tertiary:#536346; --on-tertiary:#ffffff; --tertiary-container:#d2e5c0; --on-tertiary-container:#56674a;
+  --deep-plum:#2A2438; --mint-cream:#D0F4DE; --buttery-yellow:#FFF0C2; --warm-vanilla:#FFFDF6;
+  --outline-variant:#d1c3c8; --card:#ffffff; --card-glass: rgba(255,255,255,0.7);
+  --chat-bg:#FBF4F5; --astha-bubble:#F3E9EC; --quick-reply:#F3E7FF; --error:#ba1a1a;
+  --nav-bg: rgba(255,248,248,0.8);
+}
+html.dark{
+  --surface:#241922; --background:#1a1218; --on-surface:#f2e9ee; --on-surface-variant:#cbb9c4;
+  --primary:#e5bbcf; --on-primary:#3d1f2e; --primary-container:#5c3d4e; --on-primary-container:#ffd3e8;
+  --secondary:#d0c0e7; --on-secondary:#362a4a; --secondary-container:#4d4161; --on-secondary-container:#ecdcff;
+  --tertiary:#bacca9; --on-tertiary:#263a1c; --tertiary-container:#3b4b30; --on-tertiary-container:#d6e9c4;
+  --deep-plum:#e9e0f2; --mint-cream:#26392c; --buttery-yellow:#3a3320; --warm-vanilla:#1a1218;
+  --outline-variant:#4e4448; --card:#2c2029; --card-glass: rgba(44,32,41,0.7);
+  --chat-bg:#231A22; --astha-bubble:#3a2c37; --quick-reply:#3a2f4d; --error:#ffb4ab;
+  --nav-bg: rgba(36,25,34,0.8);
+}
+*{transition: background-color .35s ease, color .35s ease, border-color .35s ease;}
+body{font-family:'Plus Jakarta Sans',sans-serif; background-color:var(--background); color:var(--on-surface); overflow-x:hidden;}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align:middle;}
+.fill{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
+.bg-surface{background-color:var(--surface);} .bg-background{background-color:var(--background);}
+.bg-card{background-color:var(--card);} .bg-glass{background-color:var(--card-glass); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);}
+.bg-primary{background-color:var(--primary);} .text-primary{color:var(--primary);} .on-primary{color:var(--on-primary);}
+.bg-primary-container{background-color:var(--primary-container);} .text-on-primary-container{color:var(--on-primary-container);}
+.bg-secondary{background-color:var(--secondary);} .text-secondary{color:var(--secondary);}
+.bg-secondary-container{background-color:var(--secondary-container);} .text-on-secondary-container{color:var(--on-secondary-container);}
+.bg-tertiary{background-color:var(--tertiary);} .text-tertiary{color:var(--tertiary);}
+.bg-tertiary-container{background-color:var(--tertiary-container);} .text-on-tertiary-container{color:var(--on-tertiary-container);}
+.text-on-surface{color:var(--on-surface);} .text-on-surface-variant{color:var(--on-surface-variant);}
+.text-deep-plum{color:var(--deep-plum);} .border-outline-variant{border-color:var(--outline-variant);}
+.bg-mint{background-color:var(--mint-cream);} .bg-buttery{background-color:var(--buttery-yellow);}
+.bg-nav{background-color:var(--nav-bg); backdrop-filter:blur(10px);}
+.glass-card{background:var(--card-glass); backdrop-filter:blur(10px); border:1px solid var(--outline-variant); transition:transform .3s ease, box-shadow .3s ease;}
+.glass-card:hover{transform:translateY(-4px); box-shadow:0 12px 24px -8px rgba(118,85,102,.2);}
+.floating-shape{position:absolute; z-index:-1; opacity:.55; filter:blur(40px); animation:float 20s infinite alternate;}
+@keyframes float{0%{transform:translate(0,0) rotate(0deg);}100%{transform:translate(40px,60px) rotate(15deg);}}
+.enroll-btn{background-color:var(--primary-container); color:var(--on-primary-container); transition:all .3s cubic-bezier(.4,0,.2,1);}
+.enroll-btn:hover{filter:brightness(0.95); box-shadow:0 0 20px rgba(255,211,232,.5); transform:scale(1.02);}
+.progress-bar-bg{background-color:var(--outline-variant); height:8px; border-radius:4px; overflow:hidden;}
+.progress-bar-fill{background-color:var(--tertiary); height:100%; border-radius:4px;}
+.calendar-day-hover:hover{box-shadow:0 0 15px rgba(255,211,232,.5); transform:translateY(-2px);}
+.mood-selector:hover{box-shadow:0 0 20px rgba(232,215,255,.6); transform:scale(1.05);}
+@keyframes fadeIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+.animate-fade-in{animation:fadeIn .6s ease-out forwards;}
+.message-anim{animation:fadeIn .3s ease-out forwards;}
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+.chat-scrollbar::-webkit-scrollbar{width:6px;} .chat-scrollbar::-webkit-scrollbar-thumb{background:var(--outline-variant); border-radius:10px;}
+.section-page{display:none;} .section-page.active{display:block;}
+.nav-link.active-link{color:var(--primary); font-weight:700; border-bottom:2px solid var(--primary);}
+.accordion-content{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+.accordion-item.open .accordion-content{max-height:1200px;}
+.accordion-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .3s ease;}
+::selection{background:var(--primary-container); color:var(--on-primary-container);}
+.tab-btn.active-tab{background-color:var(--primary); color:var(--on-primary);}
+.typing-dot{animation:blink 1.4s infinite both;} .typing-dot:nth-child(2){animation-delay:.2s;} .typing-dot:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:.2;} 40%{opacity:1;}}
+input,textarea,select{background-color:var(--card); color:var(--on-surface); border-color:var(--outline-variant);}
+input::placeholder,textarea::placeholder{color:var(--on-surface-variant); opacity:.7;}
+</style>
+</head>
+<body class="bg-background text-on-surface">
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 w-full z-50 bg-nav">
+  <div class="max-w-[1200px] mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2 cursor-pointer" onclick="goTo('landing')">
+      <svg width="36" height="36" viewBox="0 0 48 48" class="text-primary" fill="currentColor"><path d="M24 4C24 4 14 14 14 24C14 30.6 18.6 36 24 36C29.4 36 34 30.6 34 24C34 14 24 4 24 4Z" opacity="0.85"/><path d="M24 44C15 44 6 38 6 30C6 34 14 38 24 38C34 38 42 34 42 30C42 38 33 44 24 44Z"/></svg>
+      <span class="text-2xl font-extrabold text-primary">Harmony</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-8">
+      <a class="nav-link text-on-surface-variant font-medium pb-1 cursor-pointer" data-nav="tracker" onclick="goTo('tracker')">Tracker</a>
+      <a class="nav-link text-on-surface-variant font-medium pb-1 cursor-pointer" data-nav="chat" onclick="goTo('chat')">Astha AI</a>
+      <a class="nav-link text-on-surface-variant font-medium pb-1 cursor-pointer" data-nav="legal" onclick="goTo('legal')">Legal Hub</a>
+      <a class="nav-link text-on-surface-variant font-medium pb-1 cursor-pointer" data-nav="learning" onclick="goTo('learning')">Learning</a>
+      <a class="nav-link text-on-surface-variant font-medium pb-1 cursor-pointer" data-nav="community" onclick="goTo('community')">Community</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button id="theme-toggle" onclick="toggleTheme()" class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant hover:bg-primary-container transition-all" title="Toggle dark mode">
+        <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+      </button>
+      <button class="hidden sm:block bg-primary on-primary px-5 py-2 rounded-full font-semibold text-sm hover:opacity-85 transition-all" onclick="goTo('tracker')">Get Started</button>
+    </div>
+  </div>
+</header>
+
+<main class="pt-20">
+
+<!-- ============ LANDING ============ -->
+<section id="page-landing" class="section-page active">
+  <div class="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+    <div class="floating-shape bg-primary-container w-96 h-96 top-10 -left-20 rounded-full"></div>
+    <div class="floating-shape bg-tertiary-container w-80 h-80 bottom-10 right-0 rounded-[40%]"></div>
+    <div class="floating-shape bg-secondary-container w-64 h-64 top-1/3 left-1/2 rounded-full" style="animation-delay:-5s;"></div>
+    <div class="relative z-10 max-w-3xl mx-auto reveal in">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold tracking-wide mb-6">A SAFE SPACE FOR YOUR WELLBEING</span>
+      <h1 class="text-5xl md:text-6xl font-extrabold text-deep-plum leading-tight mb-6">Cycle Wisdom, <br/><span class="text-primary">Nurtured Care.</span></h1>
+      <p class="text-lg text-on-surface-variant mb-10 max-w-xl mx-auto">Harmony blends menstrual tracking, AI-guided wellness support, legal knowledge and community into one holistic space built for you.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button onclick="goTo('tracker')" class="bg-primary on-primary px-10 py-4 rounded-full font-bold hover:scale-105 transition-all shadow-lg">Get Started</button>
+        <button onclick="goTo('chat')" class="border-2 border-primary text-primary px-10 py-4 rounded-full font-bold hover:bg-primary-container/30 transition-all">Meet Astha AI</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-20 px-6 max-w-[1200px] mx-auto">
+    <div class="text-center mb-14 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold text-deep-plum mb-3">Your journey, one flow</h2>
+      <p class="text-on-surface-variant max-w-xl mx-auto">Every part of Harmony connects to the next — track, talk, learn, and grow.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <div class="md:col-span-4 bg-primary-container/20 rounded-2xl p-8 border border-primary-container/40 hover:-translate-y-1 transition-all reveal">
+        <div class="bg-primary-container w-12 h-12 rounded-lg flex items-center justify-center mb-6"><span class="material-symbols-outlined text-on-primary-container fill">water_drop</span></div>
+        <h3 class="text-xl font-bold text-deep-plum mb-3">Cycle Tracker</h3>
+        <p class="text-on-surface-variant">Log your cycle, symptoms, and mood with a gentle, private calendar.</p>
+        <button class="mt-6 text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" onclick="goTo('tracker')">Open tracker <span class="material-symbols-outlined text-base">arrow_forward</span></button>
+      </div>
+      <div class="md:col-span-4 bg-card rounded-2xl p-8 border border-outline-variant/30 hover:-translate-y-1 transition-all reveal">
+        <div class="bg-secondary-container w-12 h-12 rounded-lg flex items-center justify-center mb-6"><span class="material-symbols-outlined text-on-secondary-container fill">forum</span></div>
+        <h3 class="text-xl font-bold text-deep-plum mb-3">Astha AI</h3>
+        <p class="text-on-surface-variant">A 24/7 supportive companion for menstrual health, hygiene, and wellbeing questions.</p>
+        <button class="mt-6 text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" onclick="goTo('chat')">Chat now <span class="material-symbols-outlined text-base">arrow_forward</span></button>
+      </div>
+      <div class="md:col-span-4 bg-tertiary-container/15 rounded-2xl p-8 border border-tertiary-container/40 hover:-translate-y-1 transition-all reveal">
+        <div class="bg-tertiary-container w-12 h-12 rounded-lg flex items-center justify-center mb-6"><span class="material-symbols-outlined text-on-tertiary-container fill">balance</span></div>
+        <h3 class="text-xl font-bold text-deep-plum mb-3">Legal Hub</h3>
+        <p class="text-on-surface-variant">Clear, accessible knowledge about your rights, laws and protections.</p>
+        <button class="mt-6 text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" onclick="goTo('legal')">Explore rights <span class="material-symbols-outlined text-base">arrow_forward</span></button>
+      </div>
+      <div class="md:col-span-6 bg-card rounded-2xl p-8 border border-outline-variant/30 hover:-translate-y-1 transition-all reveal">
+        <div class="bg-mint w-12 h-12 rounded-lg flex items-center justify-center mb-6"><span class="material-symbols-outlined text-tertiary fill">school</span></div>
+        <h3 class="text-xl font-bold text-deep-plum mb-3">Learning Hub</h3>
+        <p class="text-on-surface-variant">Courses and quizzes on wellness, life skills and more — track your progress as you go.</p>
+        <button class="mt-6 text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" onclick="goTo('learning')">Browse courses <span class="material-symbols-outlined text-base">arrow_forward</span></button>
+      </div>
+      <div class="md:col-span-6 bg-primary-container/20 rounded-2xl p-8 border border-primary-container/40 hover:-translate-y-1 transition-all reveal">
+        <div class="bg-buttery w-12 h-12 rounded-lg flex items-center justify-center mb-6"><span class="material-symbols-outlined text-deep-plum fill">groups</span></div>
+        <h3 class="text-xl font-bold text-deep-plum mb-3">Community</h3>
+        <p class="text-on-surface-variant">Learner Mode for hobbies and skills, Business Mode for real exposure opportunities.</p>
+        <button class="mt-6 text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" onclick="goTo('community')">Join community <span class="material-symbols-outlined text-base">arrow_forward</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 text-center relative overflow-hidden" style="background-color:var(--deep-plum);">
+    <div class="relative z-10 max-w-2xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to find your balance?</h2>
+      <p class="text-white/80 mb-8">Join Harmony and take the first step toward informed, empowered wellbeing.</p>
+      <button onclick="goTo('tracker')" class="bg-primary-container text-on-primary-container px-10 py-4 rounded-full font-bold hover:scale-105 transition-all">Get Started — it's free</button>
+    </div>
+  </section>
+</section>
+
+<!-- ============ TRACKER ============ -->
+<section id="page-tracker" class="section-page px-6 pb-20 max-w-[1200px] mx-auto">
+  <section class="flex flex-col md:flex-row items-center gap-10 py-10 reveal">
+    <div class="flex-1 space-y-5">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-deep-plum">Cycle Wisdom, <br/><span class="text-primary">Nurtured Care.</span></h1>
+      <p class="text-lg text-on-surface-variant max-w-lg">Track your rhythm with precision and compassion. Log symptoms and moods to understand your body's natural language.</p>
+      <div class="flex flex-wrap gap-3">
+        <div class="flex items-center gap-2 bg-primary-container text-on-primary-container px-4 py-2 rounded-full">
+          <span class="material-symbols-outlined fill">water_drop</span><span id="next-period-label" class="font-semibold text-sm">Log a period to begin</span>
+        </div>
+        <div class="flex items-center gap-2 bg-tertiary-container text-on-tertiary-container px-4 py-2 rounded-full">
+          <span class="material-symbols-outlined fill">auto_awesome</span><span id="phase-label" class="font-semibold text-sm">Awaiting data</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 relative w-full">
+      <div class="glass-card p-8 rounded-[32px] text-center space-y-3 shadow-sm">
+        <p class="text-xs text-on-surface-variant uppercase tracking-widest">Today's Focus</p>
+        <h3 class="text-2xl font-bold text-primary" id="focus-title">Gentle Movement</h3>
+        <p class="text-on-surface-variant" id="focus-text">Your energy levels might be lower today. Try some restorative yoga or a short walk.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <div class="lg:col-span-8 bg-card p-6 rounded-3xl shadow-sm border border-outline-variant/30">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-deep-plum" id="cal-month-label">October 2024</h2>
+        <div class="flex gap-2">
+          <button onclick="changeMonth(-1)" class="p-2 hover:bg-primary-container/30 rounded-full transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+          <button onclick="changeMonth(1)" class="p-2 hover:bg-primary-container/30 rounded-full transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+        </div>
+      </div>
+      <div class="grid grid-cols-7 text-center mb-3">
+        <div class="text-xs font-bold text-on-surface-variant uppercase">Sun</div><div class="text-xs font-bold text-on-surface-variant uppercase">Mon</div><div class="text-xs font-bold text-on-surface-variant uppercase">Tue</div><div class="text-xs font-bold text-on-surface-variant uppercase">Wed</div><div class="text-xs font-bold text-on-surface-variant uppercase">Thu</div><div class="text-xs font-bold text-on-surface-variant uppercase">Fri</div><div class="text-xs font-bold text-on-surface-variant uppercase">Sat</div>
+      </div>
+      <div class="grid grid-cols-7 gap-2" id="calendar-grid"></div>
+      <p class="text-xs text-on-surface-variant mt-4">Click a day to mark it as a period day. Click again to remove.</p>
+    </div>
+    <div class="lg:col-span-4 bg-card p-6 rounded-3xl shadow-sm border border-outline-variant/30">
+      <h2 class="text-lg font-bold text-deep-plum mb-4">How are you feeling?</h2>
+      <div class="grid grid-cols-3 gap-2" id="mood-grid">
+        <button class="mood-selector group flex flex-col items-center gap-1 p-3 rounded-2xl bg-secondary-container/30 transition-all border border-transparent" data-mood="Happy"><span class="text-3xl group-hover:scale-110 transition-transform">😊</span><span class="text-xs font-bold text-on-secondary-container">Happy</span></button>
+        <button class="mood-selector group flex flex-col items-center gap-1 p-3 rounded-2xl bg-secondary-container/30 transition-all border border-transparent" data-mood="Low"><span class="text-3xl group-hover:scale-110 transition-transform">😔</span><span class="text-xs font-bold text-on-secondary-container">Low</span></button>
+        <button class="mood-selector group flex flex-col items-center gap-1 p-3 rounded-2xl bg-secondary-container/30 transition-all border border-transparent" data-mood="Calm"><span class="text-3xl group-hover:scale-110 transition-transform">🧘</span><span class="text-xs font-bold text-on-secondary-container">Calm</span></button>
+        <button class="mood-selector group flex flex-col items-center gap-1 p-3 rounded-2xl bg-secondary-container/30 transition-all border border-transparent" data-mood="Energetic"><span class="text-3xl group-hover:scale-110 transition-transform">⚡</span><span class="text-xs font-bold text-on-secondary-container">Energetic</span></button>
+        <button class="mood-selector group flex flex-col items-center gap-1 p-3 rounded-2xl bg-secondary-container/30 transition-all border border-transparent" data-mood="Tired"><span class="text-3xl group-hover:scale-110 transition-transform">😴</span><span class="text-xs font-bold text-on-secondary-container">Tired</span></button>
+        <button class="mood-selector group flex flex-col items-center gap-1 p-3 rounded-2xl bg-secondary-container/30 transition-all border border-transparent" data-mood="Stressed"><span class="text-3xl group-hover:scale-110 transition-transform">🤯</span><span class="text-xs font-bold text-on-secondary-container">Stressed</span></button>
+      </div>
+      <div class="mt-4">
+        <label class="block text-xs font-semibold text-on-surface-variant mb-2">Symptoms</label>
+        <div class="flex flex-wrap gap-2 mb-3" id="symptom-tags">
+          <button class="symptom-chip px-3 py-1 rounded-full border border-outline-variant text-xs" data-symptom="Cramps">Cramps</button>
+          <button class="symptom-chip px-3 py-1 rounded-full border border-outline-variant text-xs" data-symptom="Bloating">Bloating</button>
+          <button class="symptom-chip px-3 py-1 rounded-full border border-outline-variant text-xs" data-symptom="Headache">Headache</button>
+          <button class="symptom-chip px-3 py-1 rounded-full border border-outline-variant text-xs" data-symptom="Fatigue">Fatigue</button>
+          <button class="symptom-chip px-3 py-1 rounded-full border border-outline-variant text-xs" data-symptom="Acne">Acne</button>
+        </div>
+        <label class="block text-xs font-semibold text-on-surface-variant mb-2">Notes</label>
+        <textarea id="log-notes" rows="2" class="w-full rounded-xl border p-3 text-sm" placeholder="How was your day? Any specific symptoms?"></textarea>
+        <button onclick="saveLog()" class="w-full mt-3 bg-primary on-primary py-3 rounded-full font-bold shadow-lg hover:opacity-90 transition-all active:scale-95">Save Log</button>
+        <p id="save-confirm" class="text-xs text-tertiary font-semibold mt-2 hidden text-center">✓ Log saved</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-card p-6 rounded-3xl shadow-sm border border-outline-variant/30 mt-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-bold text-deep-plum">Recent Logs</h2>
+      <button onclick="clearLogs()" class="text-xs text-on-surface-variant hover:text-primary">Clear all</button>
+    </div>
+    <div id="recent-logs" class="space-y-2"></div>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+    <div class="md:col-span-2 bg-tertiary-container/15 p-6 rounded-3xl border border-tertiary-container/30 flex items-center gap-6">
+      <div class="hidden sm:flex w-20 h-20 bg-card rounded-full items-center justify-center shadow-inner flex-shrink-0">
+        <span class="material-symbols-outlined text-4xl text-tertiary fill">nutrition</span>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-tertiary mb-1">Diet Suggestion</h3>
+        <p class="text-on-surface-variant text-sm" id="diet-suggestion">Log your mood and symptoms to get a gentle, phase-based diet suggestion here.</p>
+      </div>
+    </div>
+    <div class="bg-primary-container/20 p-6 rounded-3xl border border-primary-container/40 flex flex-col justify-center" id="irregularity-card" style="display:none;">
+      <div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary fill">emergency</span><h3 class="text-base font-bold text-primary">Irregularity Noticed</h3></div>
+      <p class="text-xs text-on-surface-variant" id="irregularity-text"></p>
+      <button class="mt-3 bg-primary on-primary text-xs font-bold py-2 rounded-full" onclick="goTo('chat'); sendChat('What are the symptoms of PCOD/PCOS?')">Ask Astha about this</button>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+    <div class="md:col-span-2 bg-secondary-container/15 p-6 rounded-3xl border border-secondary-container/30 flex items-center gap-6">
+      <div class="hidden sm:flex w-20 h-20 bg-card rounded-full items-center justify-center shadow-inner flex-shrink-0">
+        <span class="material-symbols-outlined text-4xl text-secondary fill">auto_awesome</span>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-secondary mb-1">AI Intelligence</h3>
+        <p class="text-on-surface-variant text-sm" id="ai-insight">Log a few cycles and moods, and Astha will surface gentle patterns and suggestions here.</p>
+      </div>
+    </div>
+    <div class="bg-primary-container/20 p-6 rounded-3xl border border-primary-container/40 flex flex-col justify-center">
+      <div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary fill">history</span><h3 class="text-lg font-bold text-primary">Cycle History</h3></div>
+      <p class="text-sm font-bold" id="avg-cycle-label">Average: — Days</p>
+      <div class="mt-3 flex items-end gap-1 h-12" id="history-bars"></div>
+    </div>
+  </section>
+</section>
+
+<!-- ============ CHAT (ASTHA) ============ -->
+<section id="page-chat" class="section-page px-4 pb-6">
+  <div class="w-full max-w-5xl mx-auto flex flex-col h-[calc(100vh-120px)]">
+    <div class="flex items-center justify-between mb-4 pt-4">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-primary mb-1">Chat with Astha</h1>
+        <p class="text-on-surface-variant text-sm">Your supportive guide for menstrual health, hygiene, and wellbeing.</p>
+      </div>
+      <button onclick="clearChat()" class="flex items-center gap-1.5 px-4 py-2 rounded-full border border-outline-variant text-xs font-semibold text-on-surface-variant hover:text-primary hover:border-primary transition-all flex-shrink-0">
+        <span class="material-symbols-outlined text-base">delete_sweep</span> Clear Chat
+      </button>
+    </div>
+    <div class="flex-1 rounded-3xl overflow-hidden border border-outline-variant/30 flex flex-col relative min-h-0" style="background-color:var(--chat-bg);">
+      <div class="flex-1 overflow-y-auto p-5 space-y-4 chat-scrollbar min-h-0" id="chat-window"></div>
+      <div class="px-4 py-3 flex gap-2 overflow-x-auto bg-glass border-t border-outline-variant/10 chat-scrollbar" id="quick-replies" style="scrollbar-width:thin;">
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">What's a normal cycle length?</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">Tips for period pain</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">Hygiene during periods</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">What are symptoms of PCOD/PCOS?</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">What to do for irregular periods?</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">Diet for PCOS/PCOD</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">What is endometriosis?</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">What is cervical cancer?</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">How to be more confident?</button>
+        <button class="quick-btn flex-shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold text-secondary hover:brightness-95 transition-all" style="background-color:var(--quick-reply);">Books on feminism</button>
+      </div>
+      <div class="p-4 bg-card border-t border-outline-variant/20">
+        <div class="relative flex items-center">
+          <input id="chat-input" class="w-full pl-5 pr-14 py-3.5 rounded-full border focus:ring-2 focus:ring-primary-container outline-none" placeholder="Type your message to Astha..." type="text"/>
+          <button onclick="sendChat()" class="absolute right-2 p-2.5 bg-primary on-primary rounded-full hover:scale-105 active:scale-95 transition-transform"><span class="material-symbols-outlined text-lg">send</span></button>
+        </div>
+        <p class="mt-2 text-center text-xs text-on-surface-variant/70">Astha is an AI and not a replacement for professional medical advice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEGAL HUB ============ -->
+<section id="page-legal" class="section-page px-6 pb-20 max-w-[900px] mx-auto">
+  <div class="text-center py-10 reveal">
+    <span class="inline-block px-4 py-1.5 rounded-full bg-tertiary-container text-on-tertiary-container text-xs font-bold mb-4">KNOW YOUR RIGHTS</span>
+    <h1 class="text-4xl font-extrabold text-deep-plum mb-3">Legal Knowledge Hub</h1>
+    <p class="text-on-surface-variant max-w-xl mx-auto">Plain-language explanations of the laws and rights that protect your health, dignity and safety. Expand any topic to learn more.</p>
+  </div>
+  <div class="space-y-4" id="legal-accordion"></div>
+</section>
+
+<!-- ============ LEARNING ============ -->
+<section id="page-learning" class="section-page px-6 pb-20 max-w-[1200px] mx-auto relative">
+  <div class="floating-shape bg-mint w-72 h-72 top-40 -right-10 rounded-full"></div>
+  <section class="mb-8 pt-10">
+    <div class="rounded-2xl p-4 flex items-center gap-4" style="background-color:color-mix(in srgb, var(--buttery-yellow) 60%, transparent);">
+      <span class="material-symbols-outlined text-primary fill">lightbulb</span>
+      <p class="text-sm"><span class="font-bold">New Course Alert:</span> "Mindful Parenting in the Digital Age" is now available.</p>
+      <button class="ml-auto text-xs font-bold text-primary uppercase tracking-wider" onclick="this.closest('section > div').remove()">Dismiss</button>
+    </div>
+  </section>
+  <section class="mb-10 text-center max-w-2xl mx-auto reveal">
+    <h1 class="text-4xl font-extrabold text-deep-plum mb-3">Nurture Your Knowledge</h1>
+    <p class="text-on-surface-variant">A curated world of holistic learning to empower your journey toward total wellness.</p>
+  </section>
+  <section class="mb-8 flex flex-wrap gap-2 justify-center" id="course-filters">
+    <button class="filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-primary on-primary text-sm font-semibold" data-filter="All">All Subjects</button>
+    <button class="filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-glass border border-outline-variant text-sm" data-filter="Nutrition">Nutrition</button>
+    <button class="filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-glass border border-outline-variant text-sm" data-filter="Yoga">Yoga</button>
+    <button class="filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-glass border border-outline-variant text-sm" data-filter="Mental Health">Mental Health</button>
+    <button class="filter-btn whitespace-nowrap px-4 py-2 rounded-full bg-glass border border-outline-variant text-sm" data-filter="Life Skills">Life Skills</button>
+  </section>
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6" id="course-grid"></section>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section id="page-community" class="section-page px-6 pb-20 max-w-[1000px] mx-auto">
+  <div class="text-center py-10 reveal">
+    <h1 class="text-4xl font-extrabold text-deep-plum mb-3">Community</h1>
+    <p class="text-on-surface-variant max-w-xl mx-auto">Connect, share and grow — as a learner discovering new skills, or a business offering real exposure.</p>
+  </div>
+  <div class="flex justify-center gap-2 mb-8">
+    <button class="tab-btn active-tab px-6 py-2.5 rounded-full font-semibold text-sm border border-outline-variant" data-tab="learner" onclick="switchCommunityTab('learner')">🎓 Learner Mode</button>
+    <button class="tab-btn px-6 py-2.5 rounded-full font-semibold text-sm border border-outline-variant" data-tab="business" onclick="switchCommunityTab('business')">💼 Business Mode</button>
+  </div>
+
+  <div id="community-learner">
+    <form id="post-form-learner" class="bg-card border border-outline-variant/30 rounded-2xl p-4 mb-6 flex gap-3" onsubmit="return addPost(event,'learner')">
+      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary-container">person</span></div>
+      <input required class="flex-1 rounded-full border px-4 py-2 text-sm" placeholder="Share a hobby, skill, or ask for tips..."/>
+      <button class="bg-primary on-primary px-5 py-2 rounded-full text-sm font-bold">Post</button>
+    </form>
+    <div id="feed-learner" class="space-y-4"></div>
+  </div>
+
+  <div id="community-business" class="hidden">
+    <form id="post-form-business" class="bg-card border border-outline-variant/30 rounded-2xl p-4 mb-6 flex gap-3" onsubmit="return addPost(event,'business')">
+      <div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-tertiary-container">storefront</span></div>
+      <input required class="flex-1 rounded-full border px-4 py-2 text-sm" placeholder="Post an opportunity, internship, or shoutout..."/>
+      <button class="bg-primary on-primary px-5 py-2 rounded-full text-sm font-bold">Post</button>
+    </form>
+    <div id="feed-business" class="space-y-4"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="w-full py-10 px-6 flex flex-col md:flex-row justify-between items-center gap-4 border-t border-outline-variant/20" style="background-color:var(--surface);">
+  <div class="flex flex-col items-center md:items-start gap-2">
+    <span class="text-lg font-bold text-primary">Harmony</span>
+    <p class="text-xs text-on-surface-variant max-w-xs text-center md:text-left">© 2026 Harmony Holistic Wellness. Nurturing empowerment through health.</p>
+  </div>
+  <div class="flex flex-wrap justify-center gap-6 text-xs text-on-surface-variant">
+    <a class="hover:text-primary" href="#">Privacy Policy</a>
+    <a class="hover:text-primary" href="#">Terms of Service</a>
+    <a class="hover:text-primary" href="#">Support</a>
+    <a class="hover:text-primary" href="#">Legal Disclaimer</a>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

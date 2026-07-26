@@ -452,6 +452,27 @@ const LEGAL_TOPICS = [
   { icon:'pregnant_woman', title:'Maternity & Reproductive Rights',
     def: "<b>What it is:</b> The <b>Maternity Benefit Act, 1961 (amended 2017)</b> is a labor law ensuring paid leave and job protection for women around childbirth. It reflects the broader principle that reproductive health decisions are a personal right.",
     body:"The Maternity Benefit Act entitles eligible women employees to 26 weeks of paid maternity leave for the first two children (12 weeks for subsequent children), prohibits dismissal during pregnancy leave, and mandates creche facilities in establishments with 50+ employees. Separately, the <b>Medical Termination of Pregnancy (MTP) Act</b> (amended 2021) governs safe, legal access to abortion up to specified gestational limits, recognizing reproductive autonomy as part of personal liberty." },
+  { icon:'payments', title:'Right to Equal Pay & Opportunity',
+    def: "<b>What it is:</b> Equal pay means being paid the same wage as anyone else for the same or similar work, regardless of gender. Equal opportunity means having a fair, unbiased chance at hiring, promotions, and workplace roles.",
+    body:"In India, the <b>Equal Remuneration Act, 1976</b> (now consolidated into the <b>Code on Wages, 2019</b>) legally requires equal pay for equal work between men and women, and prohibits discrimination in recruitment for the same role. If you suspect unequal pay for the same work, you can raise it with your labor department or a Labour Court. <br><br><b>Internationally:</b> the <b>ILO Equal Remuneration Convention (No. 100)</b>, ratified by over 170 countries, sets the global standard for equal pay, and the UN's <b>Sustainable Development Goal 5</b> (Gender Equality) tracks progress on closing pay gaps worldwide." },
+  { icon:'cake', title:'Age of Consent & Marriage Laws',
+    def: "<b>What it is:</b> The 'age of consent' is the legal age at which a person is considered able to consent to sexual activity. Marriage laws set the minimum legal age at which a person can marry.",
+    body:"In India, the age of consent for sexual activity is <b>18 years</b> under the POCSO Act — any sexual activity with a person below this age is a criminal offense regardless of apparent consent. The legal minimum marriage age is <b>18 for women and 21 for men</b> under the <b>Prohibition of Child Marriage Act, 2006</b>; child marriage is illegal and can be voided by the minor involved. <br><br><b>Internationally:</b> Many countries have raised minimum marriage age to 18 for all genders following UN and UNICEF advocacy against child marriage, though laws vary widely — it's worth checking local laws if you live outside India." },
+  { icon:'auto_stories', title:'Right to Education',
+    def: "<b>What it is:</b> The right to education means every child has a legal entitlement to free, quality schooling, regardless of gender, income, or background.",
+    body:"India's <b>Right of Children to Free and Compulsory Education Act, 2009 (RTE Act)</b> guarantees free and compulsory education for children aged 6–14, and mandates that no child be turned away for inability to pay fees at government schools. It also requires schools to have adequate sanitation (including for menstrual hygiene) and prohibits discrimination or expulsion on discriminatory grounds. <br><br><b>Internationally:</b> the <b>UN Convention on the Rights of the Child (Article 28)</b> and <b>UNESCO's Education for All</b> initiative recognize education as a fundamental human right for every child worldwide." },
+  { icon:'phonelink_lock', title:'Cyber Harassment & Online Safety',
+    def: "<b>What it is:</b> Cyber harassment covers online stalking, non-consensual sharing of images, cyberbullying, and other digital abuse. Online safety laws aim to hold offenders accountable and protect victims' digital privacy.",
+    body:"Under India's <b>Information Technology Act, 2000</b> (Sections 66E, 67, 67A) and provisions in the Bharatiya Nyaya Sanhita, sharing private images without consent, online stalking, and cyberbullying are punishable offenses. Complaints can be filed at the National Cyber Crime Reporting Portal (<b>cybercrime.gov.in</b>) or by dialing <b>1930</b>. <br><br><b>Internationally:</b> laws like the EU's <b>GDPR</b> (data privacy), and various national 'revenge porn' laws in the US, UK, and Australia, similarly criminalize non-consensual sharing of private content — if you're outside India, your local cybercrime unit or equivalent portal can help." },
+  { icon:'real_estate_agent', title:'Property & Inheritance Rights',
+    def: "<b>What it is:</b> Inheritance rights determine who legally receives property, assets, or wealth after a person's death, and whether all children — regardless of gender — have equal claim.",
+    body:"The <b>Hindu Succession (Amendment) Act, 2005</b> gave daughters equal coparcenary rights to ancestral property, equal to sons, in Hindu families — a landmark reform. Muslim, Christian, and Parsi communities in India follow their own personal laws (e.g. Muslim Personal Law, Indian Succession Act) which have different inheritance structures, so it's worth understanding which law applies to your situation. <br><br><b>Internationally:</b> inheritance laws vary greatly by country and religion; the UN's <b>CEDAW (Convention on the Elimination of All Forms of Discrimination Against Women)</b> encourages member states to ensure equal inheritance rights, though implementation differs globally." },
+  { icon:'directions_bus', title:'Right to Safety in Public Spaces & Transport',
+    def: "<b>What it is:</b> This covers your legal right to safe, harassment-free public spaces and transport, and the legal consequences for those who violate that safety (stalking, groping, eve-teasing, etc).",
+    body:"In India, <b>Section 74 & 75 of the Bharatiya Nyaya Sanhita</b> (formerly IPC Sections 354 & 509) criminalize assault or use of criminal force intending to outrage modesty, and word/gesture-based harassment, respectively. Many cities also have dedicated women's safety helplines and 'pink patrol' units. If you experience harassment in public or on transport, you can report it to nearby police, transit security, or via emergency number <b>112</b>. <br><br><b>Internationally:</b> initiatives like <b>UN Women's Safe Cities and Safe Public Spaces Programme</b> work with governments worldwide to improve public safety infrastructure and legal response to street harassment." },
+  { icon:'diversity_3', title:'International Human Rights Frameworks',
+    def: "<b>What it is:</b> Beyond individual national laws, there are global agreements that set baseline standards for women's rights, health, and dignity that most countries have agreed to work toward.",
+    body:"Two key frameworks worth knowing: the <b>Universal Declaration of Human Rights (UDHR, 1948)</b>, which establishes basic rights to dignity, education, and non-discrimination for all people, and <b>CEDAW (1979)</b>, often called the international bill of rights for women, which India and most UN member states have ratified — committing to eliminate discrimination against women in law, education, health, employment, and family life. While these frameworks aren't directly enforceable in court like a national law, they shape and pressure national policy, and are useful reference points when advocating for your rights or understanding global standards." },
 ];
 function renderLegal(){
   const wrap = document.getElementById('legal-accordion');
@@ -482,7 +503,14 @@ const COURSES = [
     resources: [
       { term:'Mindfulness', def:'The practice of paying deliberate, non-judgmental attention to the present moment — your thoughts, feelings, and surroundings.' },
       { term:'Resilience', def:'The ability to mentally and emotionally recover from stress, setbacks, or adversity.' },
-      { term:'Longevity', def:'Living a long life — but in wellness contexts, it especially means living well for longer, with good physical and mental health.' }
+      { term:'Longevity', def:'Living a long life — but in wellness contexts, it especially means living well for longer, with good physical and mental health.' },
+      { term:'Circadian Rhythm', def:"Your body's internal 24-hour clock that regulates sleep, energy, and hormone cycles — keeping it steady supports long-term health." },
+      { term:'Blue Zones', def:'Regions of the world (like Okinawa, Japan and Sardinia, Italy) where people live unusually long, healthy lives — studied for common lifestyle habits.' }
+    ],
+    links: [
+      { label:'Harvard Health — The Science of Mindfulness', url:'https://www.health.harvard.edu/mind-and-mood' },
+      { label:'Blue Zones — Lessons on Longevity', url:'https://www.bluezones.com/' },
+      { label:'WHO — Ageing and Health', url:'https://www.who.int/news-room/fact-sheets/detail/ageing-and-health' }
     ],
     quiz:[
       {q:'What is a core benefit of mindfulness?', options:['Reduced stress','Faster typing','More screen time'], a:0}
@@ -491,7 +519,14 @@ const COURSES = [
     resources: [
       { term:'Journaling', def:'The practice of regularly writing down thoughts, feelings, or experiences, often used to process emotions and track personal growth.' },
       { term:'Emotional Processing', def:'Consciously acknowledging and working through feelings rather than suppressing or ignoring them.' },
-      { term:'Gratitude Practice', def:'A habit of intentionally noting things you are thankful for, linked to improved mood and wellbeing.' }
+      { term:'Gratitude Practice', def:'A habit of intentionally noting things you are thankful for, linked to improved mood and wellbeing.' },
+      { term:'Stream of Consciousness Writing', def:'Writing continuously without editing or overthinking, letting thoughts flow freely onto the page.' },
+      { term:'Prompted Journaling', def:'Using a specific question or theme (a "prompt") to guide what you write about, useful when unsure where to start.' }
+    ],
+    links: [
+      { label:'Penzu — Guide to Journaling', url:'https://penzu.com/journaling' },
+      { label:'Positive Psychology — Journaling Benefits & Prompts', url:'https://positivepsychology.com/benefits-of-journaling/' },
+      { label:'Greater Good Science Center — Gratitude Practices', url:'https://ggia.berkeley.edu/' }
     ],
     quiz:[
       {q:'How often should you journal for best results?', options:['Once a year','Daily or a few times a week','Never'], a:1}
@@ -501,7 +536,14 @@ const COURSES = [
       { term:'Menstrual Phase', def:'The 3–7 days when the uterine lining sheds — the body needs extra iron and rest.' },
       { term:'Follicular Phase', def:'The phase after your period, when estrogen rises and the body prepares an egg for release.' },
       { term:'Luteal Phase', def:'The phase after ovulation and before your next period, when progesterone rises — cravings and PMS symptoms often appear here.' },
-      { term:'Glycemic Index (GI)', def:'A measure of how quickly a food raises blood sugar — low-GI foods (like whole grains) release energy more steadily.' }
+      { term:'Glycemic Index (GI)', def:'A measure of how quickly a food raises blood sugar — low-GI foods (like whole grains) release energy more steadily.' },
+      { term:'Micronutrients', def:'Vitamins and minerals (like iron, magnesium, zinc) needed in small amounts but essential for hormone production and energy.' },
+      { term:'Cycle Syncing', def:'The practice of adjusting diet and exercise to match the four phases of your menstrual cycle.' }
+    ],
+    links: [
+      { label:'Harvard T.H. Chan — The Nutrition Source', url:'https://www.hsph.harvard.edu/nutritionsource/' },
+      { label:'NIH — Menstrual Cycle & Nutrition', url:'https://www.nichd.nih.gov/health/topics/menstruation' },
+      { label:'Healthline — Eating for Your Cycle', url:'https://www.healthline.com/health/womens-health/cycle-syncing' }
     ],
     quiz:[
       {q:'Iron-rich foods are especially useful during which phase?', options:['Menstrual phase','Ovulation','None'], a:0}
@@ -510,7 +552,14 @@ const COURSES = [
     resources: [
       { term:'Restorative Yoga', def:'A slow-paced style of yoga using supported poses held for longer periods to promote deep relaxation.' },
       { term:"Child's Pose (Balasana)", def:'A resting pose that gently stretches the lower back and hips — often used to ease period cramps.' },
-      { term:'Cat-Cow Stretch', def:'A flowing movement between two poses that mobilizes the spine and can relieve lower back and abdominal tension.' }
+      { term:'Cat-Cow Stretch', def:'A flowing movement between two poses that mobilizes the spine and can relieve lower back and abdominal tension.' },
+      { term:'Supta Baddha Konasana', def:"A reclined, supported pose that opens the hips and encourages deep relaxation — commonly used during the luteal or menstrual phase." },
+      { term:'Pranayama', def:'Yogic breathing exercises used to calm the nervous system and reduce stress.' }
+    ],
+    links: [
+      { label:'Yoga Journal — Poses for Menstrual Relief', url:'https://www.yogajournal.com/' },
+      { label:'Ekhart Yoga — Restorative Yoga Classes', url:'https://www.ekhartyoga.com/' },
+      { label:'DoYogaWithMe — Free Yoga Videos', url:'https://www.doyogawithme.com/' }
     ],
     quiz:[
       {q:"Child's Pose is best used for:", options:['High intensity training','Rest and gentle stretching','Sprinting'], a:1}
@@ -519,7 +568,14 @@ const COURSES = [
     resources: [
       { term:'Budget', def:'A plan for how you will spend and save your money over a period of time, based on your income.' },
       { term:'Emergency Fund', def:'Money set aside specifically for unexpected expenses, like medical bills or urgent repairs.' },
-      { term:'Compound Interest', def:'Interest calculated on both the original amount saved/invested and the interest already earned — it helps savings grow faster over time.' }
+      { term:'Compound Interest', def:'Interest calculated on both the original amount saved/invested and the interest already earned — it helps savings grow faster over time.' },
+      { term:'Gross vs Net Pay', def:'Gross pay is your total earnings before deductions; net pay is what you actually receive after taxes and other deductions.' },
+      { term:'Credit Score', def:'A number representing your creditworthiness, based on your history of borrowing and repaying money — it affects loan and credit card approvals.' }
+    ],
+    links: [
+      { label:'Investopedia — Personal Finance Basics', url:'https://www.investopedia.com/personal-finance-4427760' },
+      { label:'RBI — Financial Education Resources', url:'https://rbi.org.in/FinancialEducation/Home.aspx' },
+      { label:'Khan Academy — Personal Finance Course', url:'https://www.khanacademy.org/college-careers-more/personal-finance' }
     ],
     quiz:[
       {q:'A budget helps you:', options:['Spend randomly','Track and plan spending','Avoid saving'], a:1}
@@ -528,7 +584,14 @@ const COURSES = [
     resources: [
       { term:'Active Listening', def:"Fully concentrating on, understanding, and responding thoughtfully to what someone is saying, rather than passively hearing them." },
       { term:'Screen Time Balance', def:'Managing digital device use so it supports, rather than replaces, in-person connection, sleep, and other activities.' },
-      { term:'Digital Wellbeing', def:"A person's overall mental and physical health as it's affected by their relationship with technology and devices." }
+      { term:'Digital Wellbeing', def:"A person's overall mental and physical health as it's affected by their relationship with technology and devices." },
+      { term:'Co-viewing', def:'Watching or engaging with digital content together with a child, to guide understanding and open conversation.' },
+      { term:'Digital Footprint', def:'The trail of data a person leaves behind from their online activity — an important concept to teach children early.' }
+    ],
+    links: [
+      { label:'American Academy of Pediatrics — Media & Children', url:'https://www.healthychildren.org/English/family-life/Media/Pages/default.aspx' },
+      { label:'Common Sense Media — Parenting Guides', url:'https://www.commonsensemedia.org/' },
+      { label:'UNICEF — Digital Parenting Resources', url:'https://www.unicef.org/parenting/digital-age' }
     ],
     quiz:[
       {q:'A key part of mindful parenting is:', options:['Ignoring the child','Active listening','Strict screen bans only'], a:1}
@@ -598,6 +661,13 @@ function openResources(id){
             <p class="text-sm text-on-surface-variant mt-1">${r.def}</p>
           </div>`).join('')}
       </div>
+      <h4 class="text-xs font-bold uppercase tracking-wide text-tertiary mb-2">Further Reading</h4>
+      <div class="space-y-2 mb-5">
+        ${(course.links||[]).map(l=>`
+          <a href="${l.url}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-tertiary-container/15 border border-tertiary-container/30 rounded-xl p-3 text-sm text-on-tertiary-container hover:bg-tertiary-container/25 transition-all">
+            <span class="material-symbols-outlined text-base">open_in_new</span> ${l.label}
+          </a>`).join('')}
+      </div>
       <button class="w-full bg-primary on-primary py-2.5 rounded-full font-bold text-sm" onclick="this.closest('.fixed').remove(); openQuiz('${id}')">Take the Quiz →</button>
     </div>`;
   document.body.appendChild(modal);
@@ -629,6 +699,218 @@ function openQuiz(id){
     });
   });
 }
+
+/* ============ COMMUNITY: INTEREST CATALOG ============ */
+const INTEREST_CATEGORIES = [
+  { key:'cooking', label:'Cooking', icon:'ramen_dining', color:'var(--primary-container)' },
+  { key:'health', label:'Health', icon:'fitness_center', color:'var(--tertiary-container)' },
+  { key:'cleaning', label:'Cleaning', icon:'cleaning_services', color:'var(--secondary-container)' },
+  { key:'art', label:'Art & Drawing', icon:'palette', color:'var(--primary-container)' },
+  { key:'stitching', label:'Stitching', icon:'content_cut', color:'var(--tertiary-container)' },
+  { key:'portfolio', label:'Portfolio Building', icon:'work_history', color:'var(--secondary-container)' },
+  { key:'skill', label:'Skill Building', icon:'auto_awesome', color:'var(--primary-container)' },
+  { key:'webdev', label:'Web/App Development', icon:'code', color:'var(--tertiary-container)' },
+  { key:'ornaments', label:'Handmade Ornaments', icon:'diamond', color:'var(--secondary-container)' },
+  { key:'crochet', label:'Crocheting', icon:'texture', color:'var(--primary-container)' },
+  { key:'finance', label:'Financial Learning', icon:'account_balance', color:'var(--tertiary-container)' },
+  { key:'expenses', label:'Managing Expenses', icon:'payments', color:'var(--secondary-container)' },
+  { key:'writing', label:'Writing', icon:'edit_note', color:'var(--primary-container)' },
+  { key:'reading', label:'Reading', icon:'menu_book', color:'var(--tertiary-container)' },
+];
+
+const LEARNER_ITEMS = {
+  cooking: [
+    { title:'Home Baking Basics', desc:'Learn to bake bread, cookies and cakes from scratch with simple pantry ingredients.', link:'https://www.bbcgoodfood.com/recipes/collection/baking-recipes' },
+    { title:'Regional Cuisine Mastery', desc:'Explore traditional recipes and techniques from different regional cuisines.', link:'https://www.bbcgoodfood.com/recipes/collection/indian-recipes' }
+  ],
+  health: [
+    { title:'Beginner Fitness & Stretching', desc:'Simple daily routines to build strength, flexibility and better posture.', link:'https://www.nhs.uk/live-well/exercise/' },
+    { title:'Understanding Nutrition Basics', desc:'Learn the fundamentals of a balanced diet and reading food labels.', link:'https://www.who.int/news-room/fact-sheets/detail/healthy-diet' }
+  ],
+  cleaning: [
+    { title:'Home Organization 101', desc:'Declutter and organize your living space room by room, efficiently.', link:'https://www.youtube.com/results?search_query=home+organization+for+beginners' },
+    { title:'Eco-Friendly Cleaning', desc:'Make your own effective, non-toxic cleaning products at home.', link:'https://www.epa.gov/saferchoice' }
+  ],
+  art: [
+    { title:'Sketching for Beginners', desc:'Learn pencil sketching fundamentals — shapes, shading and proportion.', link:'https://www.skillshare.com/en/browse/drawing' },
+    { title:'Watercolor Painting Basics', desc:'Explore brush techniques and color blending for vibrant watercolor art.', link:'https://www.domestika.org/en/courses/topic/54-illustration' }
+  ],
+  stitching: [
+    { title:'Basic Hand Stitching', desc:'Learn essential hand-stitching techniques for repairs and simple projects.', link:'https://www.youtube.com/results?search_query=basic+hand+stitching+for+beginners' },
+    { title:'Sewing Machine Essentials', desc:'Get comfortable using a sewing machine to stitch your own garments.', link:'https://www.craftsy.com/' }
+  ],
+  portfolio: [
+    { title:'Design Portfolio Basics', desc:'Curate and present your creative work professionally online.', link:'https://www.behance.net/' },
+    { title:'Resume & LinkedIn Building', desc:'Build a resume and online presence that stands out to recruiters.', link:'https://www.linkedin.com/learning/' }
+  ],
+  skill: [
+    { title:'Public Speaking Basics', desc:'Overcome stage fright and communicate confidently in any setting.', link:'https://www.toastmasters.org/' },
+    { title:'Time Management Skills', desc:'Learn practical productivity frameworks to get more done calmly.', link:'https://www.coursera.org/courses?query=time%20management' }
+  ],
+  webdev: [
+    { title:'HTML, CSS & JS Basics', desc:'Start building your own websites from scratch, step by step.', link:'https://www.freecodecamp.org/' },
+    { title:'Intro to App Development', desc:'Learn the fundamentals of building mobile apps for Android or iOS.', link:'https://developer.android.com/courses' }
+  ],
+  ornaments: [
+    { title:'Beaded Jewelry Making', desc:'Create beautiful beaded necklaces, earrings and bracelets at home.', link:'https://www.youtube.com/results?search_query=beaded+jewelry+making+for+beginners' },
+    { title:'Clay Ornament Crafting', desc:'Sculpt and paint decorative clay ornaments and charms.', link:'https://www.craftsy.com/' }
+  ],
+  crochet: [
+    { title:'Crochet for Beginners', desc:'Learn basic stitches and simple patterns to start your first project.', link:'https://www.yarnspirations.com/pages/how-to-crochet' },
+    { title:'Amigurumi Basics', desc:'Craft cute crocheted toys and figures using simple stitches.', link:'https://www.ravelry.com/' }
+  ],
+  finance: [
+    { title:'Personal Finance 101', desc:'Understand saving, investing, taxes and building long-term wealth.', link:'https://www.investopedia.com/' },
+    { title:'Intro to Stock Markets', desc:'Learn the basics of how stock markets and investing work.', link:'https://www.nseindia.com/' }
+  ],
+  expenses: [
+    { title:'Monthly Budgeting Basics', desc:'Track and plan your monthly expenses without feeling restricted.', link:'https://www.investopedia.com/personal-finance-4427760' },
+    { title:'Smart Saving Habits', desc:'Practical, realistic tips to save consistently every month.', link:'https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/' }
+  ],
+  writing: [
+    { title:'Creative Writing Basics', desc:'Learn storytelling structure, character building and creative expression.', link:'https://www.masterclass.com/articles/creative-writing-101' },
+    { title:'Content Writing for Beginners', desc:'Learn to write engaging content for blogs and social media.', link:'https://www.coursera.org/courses?query=content%20writing' }
+  ],
+  reading: [
+    { title:'Building a Reading Habit', desc:'Practical tips to read more consistently and actually enjoy it.', link:'https://www.goodreads.com/' },
+    { title:'Starting a Book Club', desc:'Learn how to start or join a book club with friends or online.', link:'https://www.goodreads.com/group' }
+  ],
+};
+
+const BUSINESS_ITEMS = {
+  cooking: [
+    { business:'Spice Route Culinary Studio', title:'Professional Baking Certification', desc:'12-week hands-on program covering breads, pastries and cake artistry — includes a business starter kit for home bakers.', price:'₹8,999', duration:'12 weeks', link:'https://www.udemy.com/topic/baking/' },
+    { business:'Urban Kitchen Collective', title:'Weekend Regional Cuisine Workshops', desc:'Live weekend workshops on regional cuisines, taught by practicing chefs, with recipe cards included.', price:'₹1,499 / session', duration:'3 hours', link:'https://www.eventbrite.com/d/online/cooking-classes/' }
+  ],
+  health: [
+    { business:'Vitality Wellness Co.', title:'8-Week Fitness Foundations Program', desc:'A structured beginner fitness program with live trainer check-ins and progress tracking.', price:'₹3,499', duration:'8 weeks', link:'https://www.classpass.com/' },
+    { business:'NutriWell Clinic', title:'Nutrition Fundamentals Workshop', desc:'A dietician-led course on building sustainable, balanced eating habits.', price:'₹2,199', duration:'4 sessions', link:'https://www.coursera.org/courses?query=nutrition' }
+  ],
+  cleaning: [
+    { business:'TidyHome Academy', title:'Home Organization Business Certificate', desc:'Learn organizing systems well enough to declutter for clients — includes a starter business toolkit.', price:'₹4,999', duration:'6 weeks', link:'https://www.udemy.com/topic/home-organization/' },
+    { business:'GreenClean Co.', title:'Eco-Cleaning Product Making Workshop', desc:'Learn to make and sell non-toxic cleaning products from home.', price:'₹999', duration:'1 day', link:'https://www.epa.gov/saferchoice' }
+  ],
+  art: [
+    { business:'Canvas & Co. Studio', title:'Sketching to Selling: Artist Bootcamp', desc:'From beginner sketching techniques to setting up your own online art shop.', price:'₹5,499', duration:'10 weeks', link:'https://www.domestika.org/en/courses/topic/54-illustration' },
+    { business:'Paletteworks Academy', title:'Watercolor Mastery Workshop', desc:'Intensive watercolor techniques taught by professional illustrators.', price:'₹2,999', duration:'5 sessions', link:'https://www.skillshare.com/en/browse/drawing' }
+  ],
+  stitching: [
+    { business:'StitchCraft Studio', title:'Tailoring Basics for Small Business', desc:'Learn garment stitching well enough to start taking client orders.', price:'₹6,499', duration:'8 weeks', link:'https://www.craftsy.com/' },
+    { business:'SewSimple Classes', title:'Weekend Sewing Machine Workshop', desc:'Hands-on sessions to master your sewing machine from scratch.', price:'₹1,299 / session', duration:'2 sessions', link:'https://www.youtube.com/results?search_query=sewing+machine+workshop' }
+  ],
+  portfolio: [
+    { business:'CreativeEdge Consulting', title:'Design Portfolio Building Sprint', desc:'A 4-week sprint to build a job-ready design portfolio with mentor feedback.', price:'₹4,499', duration:'4 weeks', link:'https://www.behance.net/' },
+    { business:'CareerLaunch Pro', title:'Resume & LinkedIn Optimization Package', desc:'One-on-one sessions to rebuild your resume and LinkedIn for visibility.', price:'₹2,999', duration:'2 sessions', link:'https://www.linkedin.com/learning/' }
+  ],
+  skill: [
+    { business:'SpeakWell Institute', title:'Public Speaking Mastery Course', desc:'Small-group live coaching to build stage confidence and clear delivery.', price:'₹3,999', duration:'6 weeks', link:'https://www.toastmasters.org/' },
+    { business:'ProductivityPath Coaching', title:'Time Management Intensive', desc:'A practical course on planning systems used by working professionals.', price:'₹1,999', duration:'3 sessions', link:'https://www.coursera.org/courses?query=time%20management' }
+  ],
+  webdev: [
+    { business:'CodeForward Academy', title:'Full-Stack Web Development Bootcamp', desc:'From HTML/CSS basics to deploying a full working website, project-based.', price:'₹12,999', duration:'14 weeks', link:'https://www.freecodecamp.org/' },
+    { business:'AppCraft Labs', title:'Intro to Mobile App Development', desc:'Build and publish your first simple mobile app with mentor support.', price:'₹9,499', duration:'10 weeks', link:'https://developer.android.com/courses' }
+  ],
+  ornaments: [
+    { business:'GlimmerCraft Studio', title:'Jewelry Making for Small Business', desc:'Learn beaded and wire jewelry techniques plus how to price and sell your pieces.', price:'₹3,499', duration:'5 weeks', link:'https://www.craftsy.com/' },
+    { business:'ClayTales Workshop', title:'Clay Ornament Business Starter', desc:'Sculpting, painting and packaging clay ornaments ready for markets.', price:'₹2,799', duration:'4 sessions', link:'https://www.youtube.com/results?search_query=clay+ornament+business' }
+  ],
+  crochet: [
+    { business:'YarnHouse Academy', title:'Crochet Business Starter Course', desc:'From basic stitches to pricing and selling finished crochet pieces online.', price:'₹2,499', duration:'6 weeks', link:'https://www.yarnspirations.com/pages/how-to-crochet' },
+    { business:'Amigurumi Collective', title:'Amigurumi Toy-Making Workshop', desc:'Learn to craft sellable crocheted toys with guided patterns.', price:'₹1,799', duration:'4 sessions', link:'https://www.ravelry.com/' }
+  ],
+  finance: [
+    { business:'WealthWise Advisors', title:'Personal Finance Mastery Course', desc:'A practical course on saving, investing and long-term wealth planning.', price:'₹4,999', duration:'6 weeks', link:'https://www.investopedia.com/' },
+    { business:'MarketReady Academy', title:'Stock Market Fundamentals', desc:'Learn how markets work and how to start investing responsibly.', price:'₹3,999', duration:'5 sessions', link:'https://www.nseindia.com/' }
+  ],
+  expenses: [
+    { business:'BudgetSmart Coaching', title:'Monthly Budgeting Workshop', desc:'Hands-on templates and coaching to plan and track your expenses.', price:'₹1,499', duration:'3 sessions', link:'https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/' },
+    { business:'SaveSteady Program', title:'Building Smart Saving Habits', desc:'A guided program to build automatic, sustainable saving habits.', price:'₹1,199', duration:'4 weeks', link:'https://www.investopedia.com/personal-finance-4427760' }
+  ],
+  writing: [
+    { business:'InkWell Writers Studio', title:'Creative Writing Certificate', desc:'Structured feedback-driven course on storytelling and creative craft.', price:'₹3,999', duration:'8 weeks', link:'https://www.masterclass.com/articles/creative-writing-101' },
+    { business:'ContentPro Academy', title:'Content Writing for Freelancers', desc:'Learn to write for blogs and brands, with real client-style briefs.', price:'₹4,499', duration:'6 weeks', link:'https://www.coursera.org/courses?query=content%20writing' }
+  ],
+  reading: [
+    { business:'ReadersCircle Co.', title:'Guided Reading Habit Program', desc:'A month-long guided program with curated book lists and check-ins.', price:'₹999', duration:'4 weeks', link:'https://www.goodreads.com/' },
+    { business:'BookClub Connect', title:'Start Your Own Book Club Kit', desc:'Templates, discussion guides and community support to launch a book club.', price:'₹599', duration:'Self-paced', link:'https://www.goodreads.com/group' }
+  ],
+};
+
+let activeInterestFilter = { learner:'all', business:'all' };
+function renderInterestFilters(mode){
+  const wrap = document.getElementById('interest-filters-'+mode);
+  if(!wrap) return;
+  wrap.innerHTML = '';
+  const allBtn = document.createElement('button');
+  allBtn.className = 'interest-filter-btn flex-shrink-0 whitespace-nowrap flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold border border-outline-variant transition-all' + (activeInterestFilter[mode]==='all' ? ' bg-primary on-primary' : ' bg-glass');
+  allBtn.innerHTML = `<span class="material-symbols-outlined text-sm">apps</span> All`;
+  allBtn.onclick = ()=>{ activeInterestFilter[mode]='all'; renderInterestFilters(mode); renderInterestGrid(mode); };
+  wrap.appendChild(allBtn);
+  INTEREST_CATEGORIES.forEach(cat=>{
+    const btn = document.createElement('button');
+    const active = activeInterestFilter[mode]===cat.key;
+    btn.className = 'interest-filter-btn flex-shrink-0 whitespace-nowrap flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold border border-outline-variant transition-all' + (active ? ' bg-primary on-primary' : ' bg-glass');
+    btn.innerHTML = `<span class="material-symbols-outlined text-sm">${cat.icon}</span> ${cat.label}`;
+    btn.onclick = ()=>{ activeInterestFilter[mode]=cat.key; renderInterestFilters(mode); renderInterestGrid(mode); };
+    wrap.appendChild(btn);
+  });
+}
+function renderInterestGrid(mode){
+  const grid = document.getElementById('interest-grid-'+mode);
+  if(!grid) return;
+  grid.innerHTML = '';
+  const filter = activeInterestFilter[mode];
+  const cats = filter==='all' ? INTEREST_CATEGORIES : INTEREST_CATEGORIES.filter(c=>c.key===filter);
+  const dataSource = mode==='learner' ? LEARNER_ITEMS : BUSINESS_ITEMS;
+  cats.forEach(cat=>{
+    (dataSource[cat.key]||[]).forEach(item=>{
+      const card = document.createElement('div');
+      card.className = 'glass-card rounded-2xl p-5 cursor-pointer relative overflow-hidden reveal in';
+      card.innerHTML = `
+        <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-40" style="background-color:${cat.color};"></div>
+        <div class="relative z-10">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background-color:${cat.color};">
+            <span class="material-symbols-outlined fill" style="color:var(--on-surface);">${cat.icon}</span>
+          </div>
+          <span class="inline-block text-[10px] font-bold uppercase tracking-wide text-on-surface-variant mb-1">${cat.label}${mode==='business' ? ' · Business' : ''}</span>
+          <h3 class="text-base font-bold text-deep-plum mb-1">${item.title}</h3>
+          ${mode==='business' ? `<p class="text-xs font-semibold text-primary mb-1">${item.business}</p>` : ''}
+          <p class="text-sm text-on-surface-variant line-clamp-3">${item.desc}</p>
+          ${mode==='business' ? `<div class="flex items-center gap-3 mt-3 text-xs font-bold text-on-surface-variant"><span>💰 ${item.price}</span><span>⏱ ${item.duration}</span></div>` : ''}
+        </div>`;
+      card.addEventListener('click', ()=>openInterestModal(cat, item, mode));
+      grid.appendChild(card);
+    });
+  });
+  revealOnScroll();
+}
+function openInterestModal(cat, item, mode){
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-6';
+  modal.innerHTML = `
+    <div class="bg-card rounded-2xl p-6 max-w-md w-full relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full opacity-30" style="background-color:${cat.color};"></div>
+      <div class="relative z-10">
+        <div class="flex justify-between items-start mb-3">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background-color:${cat.color};"><span class="material-symbols-outlined fill" style="color:var(--on-surface);">${cat.icon}</span></div>
+          <button class="text-on-surface-variant" onclick="this.closest('.fixed').remove()"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-on-surface-variant">${cat.label}${mode==='business' ? ' · Business Listing' : ''}</span>
+        <h3 class="text-xl font-bold text-deep-plum mt-1 mb-1">${item.title}</h3>
+        ${mode==='business' ? `<p class="text-sm font-semibold text-primary mb-2">Offered by ${item.business}</p>` : ''}
+        <p class="text-sm text-on-surface-variant mb-4">${item.desc}</p>
+        ${mode==='business' ? `<div class="flex items-center gap-4 mb-4 text-sm font-bold"><span class="bg-tertiary-container/30 text-on-tertiary-container px-3 py-1 rounded-full">💰 ${item.price}</span><span class="bg-secondary-container/30 text-on-secondary-container px-3 py-1 rounded-full">⏱ ${item.duration}</span></div>` : ''}
+        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="w-full bg-primary on-primary py-2.5 rounded-full font-bold text-sm flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-base">open_in_new</span> ${mode==='business' ? 'Enroll / Learn More' : 'Take This Class Online'}
+        </a>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+}
+renderInterestFilters('learner');
+renderInterestGrid('learner');
+renderInterestFilters('business');
+renderInterestGrid('business');
 
 /* ============ COMMUNITY ============ */
 function switchCommunityTab(tab){

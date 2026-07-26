@@ -62,15 +62,16 @@ body{font-family:'Plus Jakarta Sans',sans-serif; background-color:var(--backgrou
 .section-page{display:none;} .section-page.active{display:block;}
 .nav-link.active-link{color:var(--primary); font-weight:700; border-bottom:2px solid var(--primary);}
 .accordion-content{max-height:0; overflow:hidden; transition:max-height .4s ease;}
-.accordion-item.open .accordion-content{max-height:1200px;}
+.accordion-item.open .accordion-content{max-height:1500px;}
 .accordion-item.open .chev{transform:rotate(180deg);}
 .chev{transition:transform .3s ease;}
+.line-clamp-3{display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;}
 ::selection{background:var(--primary-container); color:var(--on-primary-container);}
 .tab-btn.active-tab{background-color:var(--primary); color:var(--on-primary);}
 .typing-dot{animation:blink 1.4s infinite both;} .typing-dot:nth-child(2){animation-delay:.2s;} .typing-dot:nth-child(3){animation-delay:.4s;}
 @keyframes blink{0%,80%,100%{opacity:.2;} 40%{opacity:1;}}
-input,textarea,select{background-color:var(--card); color:var(--on-surface); border-color:var(--outline-variant);}
-input::placeholder,textarea::placeholder{color:var(--on-surface-variant); opacity:.7;}
+input,textarea,select{background-color:var(--card) !important; color:var(--on-surface) !important; border-color:var(--outline-variant) !important; caret-color:var(--on-surface);}
+input::placeholder,textarea::placeholder{color:var(--on-surface-variant) !important; opacity:.7;}
 </style>
 </head>
 <body class="bg-background text-on-surface">
@@ -346,17 +347,23 @@ input::placeholder,textarea::placeholder{color:var(--on-surface-variant); opacit
 </section>
 
 <!-- ============ COMMUNITY ============ -->
-<section id="page-community" class="section-page px-6 pb-20 max-w-[1000px] mx-auto">
+<section id="page-community" class="section-page px-6 pb-20 max-w-[1200px] mx-auto">
   <div class="text-center py-10 reveal">
     <h1 class="text-4xl font-extrabold text-deep-plum mb-3">Community</h1>
     <p class="text-on-surface-variant max-w-xl mx-auto">Connect, share and grow — as a learner discovering new skills, or a business offering real exposure.</p>
   </div>
-  <div class="flex justify-center gap-2 mb-8">
+  <div class="flex justify-center gap-2 mb-10">
     <button class="tab-btn active-tab px-6 py-2.5 rounded-full font-semibold text-sm border border-outline-variant" data-tab="learner" onclick="switchCommunityTab('learner')">🎓 Learner Mode</button>
     <button class="tab-btn px-6 py-2.5 rounded-full font-semibold text-sm border border-outline-variant" data-tab="business" onclick="switchCommunityTab('business')">💼 Business Mode</button>
   </div>
 
   <div id="community-learner">
+    <div class="mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-primary fill">interests</span><h2 class="text-xl font-bold text-deep-plum">Explore by Interest</h2></div>
+    <p class="text-sm text-on-surface-variant mb-4">Pick a category to discover hobbies and skills, with links to learn more or start a class online.</p>
+    <div class="flex gap-2 overflow-x-auto pb-2 mb-6 chat-scrollbar" id="interest-filters-learner"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12" id="interest-grid-learner"></div>
+
+    <div class="mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-secondary fill">forum</span><h2 class="text-xl font-bold text-deep-plum">Community Feed</h2></div>
     <form id="post-form-learner" class="bg-card border border-outline-variant/30 rounded-2xl p-4 mb-6 flex gap-3" onsubmit="return addPost(event,'learner')">
       <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary-container">person</span></div>
       <input required class="flex-1 rounded-full border px-4 py-2 text-sm" placeholder="Share a hobby, skill, or ask for tips..."/>
@@ -366,6 +373,12 @@ input::placeholder,textarea::placeholder{color:var(--on-surface-variant); opacit
   </div>
 
   <div id="community-business" class="hidden">
+    <div class="mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-tertiary fill">storefront</span><h2 class="text-xl font-bold text-deep-plum">Courses & Opportunities by Category</h2></div>
+    <p class="text-sm text-on-surface-variant mb-4">Businesses and creators offering courses, workshops and exposure opportunities across categories.</p>
+    <div class="flex gap-2 overflow-x-auto pb-2 mb-6 chat-scrollbar" id="interest-filters-business"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12" id="interest-grid-business"></div>
+
+    <div class="mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-secondary fill">forum</span><h2 class="text-xl font-bold text-deep-plum">Community Feed</h2></div>
     <form id="post-form-business" class="bg-card border border-outline-variant/30 rounded-2xl p-4 mb-6 flex gap-3" onsubmit="return addPost(event,'business')">
       <div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-tertiary-container">storefront</span></div>
       <input required class="flex-1 rounded-full border px-4 py-2 text-sm" placeholder="Post an opportunity, internship, or shoutout..."/>

@@ -1,0 +1,147 @@
+/* =====================================================================
+   HARMONY — STYLESHEET
+   Organized by concern so it's easy to find what affects what.
+   Sections:
+     1. Theme Variables (Light & Dark)
+     2. Base / Reset
+     3. Typography & Icons
+     4. Color Utility Classes (bg-*, text-*, on-* helpers)
+     5. Navigation
+     6. Buttons & Cards (shared across all pages)
+     7. Motifs & Animations (floating shapes, fade-ins, scroll reveal)
+     8. Routing (section-page show/hide)
+     9. Menstrual Tracker (calendar, mood selector)
+    10. Astha AI Chat (bubbles, typing indicator, scrollbar)
+    11. Legal Knowledge Hub (accordion)
+    12. Learning Hub (course cards, progress bar)
+    13. Community (tabs, interest cards, line-clamp)
+    14. Forms & Inputs (site-wide, incl. dark-mode text-visibility fix)
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. THEME VARIABLES (Light & Dark)
+   --------------------------------------------------------------------- */
+:root{
+  --surface:#fff8f8; --background:#FFFDF6; --on-surface:#1e1b1c; --on-surface-variant:#4e4448;
+  --primary:#765566; --on-primary:#ffffff; --primary-container:#ffd3e8; --on-primary-container:#7a586a;
+  --secondary:#65587a; --on-secondary:#ffffff; --secondary-container:#e7d6fe; --on-secondary-container:#685b7d;
+  --tertiary:#536346; --on-tertiary:#ffffff; --tertiary-container:#d2e5c0; --on-tertiary-container:#56674a;
+  --deep-plum:#2A2438; --mint-cream:#D0F4DE; --buttery-yellow:#FFF0C2; --warm-vanilla:#FFFDF6;
+  --outline-variant:#d1c3c8; --card:#ffffff; --card-glass: rgba(255,255,255,0.7);
+  --chat-bg:#FBF4F5; --astha-bubble:#F3E9EC; --quick-reply:#F3E7FF; --error:#ba1a1a;
+  --nav-bg: rgba(255,248,248,0.8);
+}
+html.dark{
+  --surface:#241922; --background:#1a1218; --on-surface:#f2e9ee; --on-surface-variant:#cbb9c4;
+  --primary:#e5bbcf; --on-primary:#3d1f2e; --primary-container:#5c3d4e; --on-primary-container:#ffd3e8;
+  --secondary:#d0c0e7; --on-secondary:#362a4a; --secondary-container:#4d4161; --on-secondary-container:#ecdcff;
+  --tertiary:#bacca9; --on-tertiary:#263a1c; --tertiary-container:#3b4b30; --on-tertiary-container:#d6e9c4;
+  --deep-plum:#e9e0f2; --mint-cream:#26392c; --buttery-yellow:#3a3320; --warm-vanilla:#1a1218;
+  --outline-variant:#4e4448; --card:#2c2029; --card-glass: rgba(44,32,41,0.7);
+  --chat-bg:#231A22; --astha-bubble:#3a2c37; --quick-reply:#3a2f4d; --error:#ffb4ab;
+  --nav-bg: rgba(36,25,34,0.8);
+}
+
+/* ---------------------------------------------------------------------
+   2. BASE / RESET
+   --------------------------------------------------------------------- */
+*{transition: background-color .35s ease, color .35s ease, border-color .35s ease;}
+body{font-family:'Plus Jakarta Sans',sans-serif; background-color:var(--background); color:var(--on-surface); overflow-x:hidden;}
+::selection{background:var(--primary-container); color:var(--on-primary-container);}
+
+/* ---------------------------------------------------------------------
+   3. TYPOGRAPHY & ICONS
+   --------------------------------------------------------------------- */
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; vertical-align:middle;}
+.fill{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
+
+/* ---------------------------------------------------------------------
+   4. COLOR UTILITY CLASSES
+   (map design-token CSS variables onto simple utility classes used
+   throughout every page — Landing, Tracker, Chat, Legal, Learning, Community)
+   --------------------------------------------------------------------- */
+.bg-surface{background-color:var(--surface);} .bg-background{background-color:var(--background);}
+.bg-card{background-color:var(--card);} .bg-glass{background-color:var(--card-glass); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);}
+.bg-primary{background-color:var(--primary);} .text-primary{color:var(--primary);} .on-primary{color:var(--on-primary);}
+.bg-primary-container{background-color:var(--primary-container);} .text-on-primary-container{color:var(--on-primary-container);}
+.bg-secondary{background-color:var(--secondary);} .text-secondary{color:var(--secondary);}
+.bg-secondary-container{background-color:var(--secondary-container);} .text-on-secondary-container{color:var(--on-secondary-container);}
+.bg-tertiary{background-color:var(--tertiary);} .text-tertiary{color:var(--tertiary);}
+.bg-tertiary-container{background-color:var(--tertiary-container);} .text-on-tertiary-container{color:var(--on-tertiary-container);}
+.text-on-surface{color:var(--on-surface);} .text-on-surface-variant{color:var(--on-surface-variant);}
+.text-deep-plum{color:var(--deep-plum);} .border-outline-variant{border-color:var(--outline-variant);}
+.bg-mint{background-color:var(--mint-cream);} .bg-buttery{background-color:var(--buttery-yellow);}
+
+/* ---------------------------------------------------------------------
+   5. NAVIGATION (fixed header, used on every page)
+   --------------------------------------------------------------------- */
+.bg-nav{background-color:var(--nav-bg); backdrop-filter:blur(10px);}
+.nav-link.active-link{color:var(--primary); font-weight:700; border-bottom:2px solid var(--primary);}
+
+/* ---------------------------------------------------------------------
+   6. BUTTONS & CARDS (shared across all pages)
+   --------------------------------------------------------------------- */
+.glass-card{background:var(--card-glass); backdrop-filter:blur(10px); border:1px solid var(--outline-variant); transition:transform .3s ease, box-shadow .3s ease;}
+.glass-card:hover{transform:translateY(-4px); box-shadow:0 12px 24px -8px rgba(118,85,102,.2);}
+.enroll-btn{background-color:var(--primary-container); color:var(--on-primary-container); transition:all .3s cubic-bezier(.4,0,.2,1);}
+.enroll-btn:hover{filter:brightness(0.95); box-shadow:0 0 20px rgba(255,211,232,.5); transform:scale(1.02);}
+
+/* ---------------------------------------------------------------------
+   7. MOTIFS & ANIMATIONS
+   (Landing page floating shapes, fade-ins, scroll-reveal used everywhere)
+   --------------------------------------------------------------------- */
+.floating-shape{position:absolute; z-index:-1; opacity:.55; filter:blur(40px); animation:float 20s infinite alternate;}
+@keyframes float{0%{transform:translate(0,0) rotate(0deg);}100%{transform:translate(40px,60px) rotate(15deg);}}
+@keyframes fadeIn{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+.animate-fade-in{animation:fadeIn .6s ease-out forwards;}
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+/* ---------------------------------------------------------------------
+   8. ROUTING (single-page app section show/hide, driven by app.js goTo())
+   --------------------------------------------------------------------- */
+.section-page{display:none;} .section-page.active{display:block;}
+
+/* ---------------------------------------------------------------------
+   9. MENSTRUAL TRACKER (calendar grid + mood selector)
+   --------------------------------------------------------------------- */
+.calendar-day-hover:hover{box-shadow:0 0 15px rgba(255,211,232,.5); transform:translateY(-2px);}
+.mood-selector:hover{box-shadow:0 0 20px rgba(232,215,255,.6); transform:scale(1.05);}
+
+/* ---------------------------------------------------------------------
+   10. ASTHA AI CHAT (message bubbles, typing indicator, scrollbar)
+   --------------------------------------------------------------------- */
+.message-anim{animation:fadeIn .3s ease-out forwards;}
+.chat-scrollbar::-webkit-scrollbar{width:6px;} .chat-scrollbar::-webkit-scrollbar-thumb{background:var(--outline-variant); border-radius:10px;}
+.typing-dot{animation:blink 1.4s infinite both;} .typing-dot:nth-child(2){animation-delay:.2s;} .typing-dot:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:.2;} 40%{opacity:1;}}
+
+/* ---------------------------------------------------------------------
+   11. LEGAL KNOWLEDGE HUB (expandable accordion)
+   --------------------------------------------------------------------- */
+.accordion-content{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+.accordion-item.open .accordion-content{max-height:1500px;}
+.accordion-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .3s ease;}
+
+/* ---------------------------------------------------------------------
+   12. LEARNING HUB (course cards + progress bar)
+   --------------------------------------------------------------------- */
+.progress-bar-bg{background-color:var(--outline-variant); height:8px; border-radius:4px; overflow:hidden;}
+.progress-bar-fill{background-color:var(--tertiary); height:100%; border-radius:4px;}
+
+/* ---------------------------------------------------------------------
+   13. COMMUNITY (Learner/Business tabs, interest-catalog cards)
+   --------------------------------------------------------------------- */
+.tab-btn.active-tab{background-color:var(--primary); color:var(--on-primary);}
+.line-clamp-3{display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;}
+
+/* ---------------------------------------------------------------------
+   14. FORMS & INPUTS (site-wide)
+   Note: !important is required here because the Tailwind CDN "forms"
+   plugin injects its own default input colors after this stylesheet,
+   which otherwise makes typed text invisible in dark mode (e.g. the
+   Tracker's notes textarea).
+   --------------------------------------------------------------------- */
+input,textarea,select{background-color:var(--card) !important; color:var(--on-surface) !important; border-color:var(--outline-variant) !important; caret-color:var(--on-surface);}
+input::placeholder,textarea::placeholder{color:var(--on-surface-variant) !important; opacity:.7;}

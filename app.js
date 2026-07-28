@@ -1,3 +1,23 @@
+/* =====================================================================
+   HARMONY — APPLICATION LOGIC (app.js)
+   Organized by site section so it's easy to find what affects what.
+   Sections in this file, in order:
+     1. Theme (dark/light toggle)
+     2. Navigation / Router (single-page section switching)
+     3. Scroll Reveal (fade-in-on-scroll animation)
+     4. Storage Helpers (localStorage read/write utilities)
+     5. Menstrual Tracker (calendar, mood/symptom logging, diet
+        suggestions, irregularity/PCOD alert, cycle history)
+     6. Astha AI Chatbot (rule-based Q&A, chat history, clear chat)
+     7. Legal Knowledge Hub (accordion topics)
+     8. Learning Hub (courses, resources/further-reading, quizzes)
+     9. Community: Interest Catalog (Learner & Business mode listings)
+    10. Community: Feed (posts/comments for Learner & Business mode)
+   Linked from index.html via <script src="app.js"></script>
+   Depends on styles.css only for visual classes; no other file
+   dependencies.
+   ===================================================================== */
+
 /* ============ THEME ============ */
 function toggleTheme(){
   const html = document.documentElement;
